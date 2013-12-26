@@ -1,0 +1,18 @@
+# rendering_snapshot
+# The rendering snapshot is a hybrid between the pgsnapshot and the osm2pgsql schema
+# osm2pgsql schema: http://wiki.openstreetmap.org/wiki/Osm2pgsql/schema
+# pgsnapshit schema: http://wiki.openstreetmap.org/wiki/Osmosis/Detailed_Usage#PostGIS_Tasks_.28Snapshot_Schema.29
+#
+# The osm2pgsql schema can build intermediate tables to translate from the OSM API to the osm2pgsql schema
+# http://wiki.openstreetmap.org/wiki/Osm2pgsql/schema#Intermediate_tables
+# These intermediate tables contain similar information to the pgsnapshot db
+# The pgsnapshot db provides enough information to build the rendering tables
+
+# the standard osm2pgsql tables are represented as views, a future TODO may be to parse the default
+# style file and create the views based on that style list (https://github.com/openstreetmap/osm2pgsql/blob/master/default.style)
+#
+# planet_osm_line: contains all imported ways
+# planet_osm_point: contains all imported nodes with tags
+# planet_osm_polygon: contains all imported polygons (closed ways).
+# planet_osm_roads: contains lines that are tagged as roads
+
