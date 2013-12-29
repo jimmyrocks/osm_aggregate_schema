@@ -1,7 +1,7 @@
-DROP FUNCTION o2p_join_line_relation(bigint);
-CREATE OR REPLACE FUNCTION o2p_join_line_relation(
+DROP FUNCTION o2p_aggregate_line_relation(bigint);
+CREATE OR REPLACE FUNCTION o2p_aggregate_line_relation(
   bigint
-) returns geometry[] AS o2p_join_line_relation
+) returns geometry[] AS o2p_aggregate_line_relation
 DECLARE
   v_rel_id ALIAS for $1;
   v_lines geometry[];
@@ -70,4 +70,4 @@ INTO
 
 RETURN v_lines;
 END;
-o2p_join_line_relation LANGUAGE plpgsql;
+o2p_aggregate_line_relation LANGUAGE plpgsql;
