@@ -1,8 +1,29 @@
--- Poly sample view
+-- Poly example view
 
 SELECT
   id,
-  tags,
+-------------------------------
+ways.tags -> 'aeroway' as "aeroway",
+ways.tags -> 'amenity' as "amenity",
+ways.tags -> 'building' as "building",
+ways.tags -> 'harbour' as "harbour",
+ways.tags -> 'historic' as "historic",
+ways.tags -> 'landuse' as "landuse",
+ways.tags -> 'leisure' as "leisure",
+ways.tags -> 'man_made' as "man_made",
+ways.tags -> 'military' as "military",
+ways.tags -> 'natural' as "natural",
+ways.tags -> 'office' as "office",
+ways.tags -> 'place' as "place",
+ways.tags -> 'power' as "power",
+ways.tags -> 'public_transport' as "public_transport",
+ways.tags -> 'shop' as "shop",
+ways.tags -> 'sport' as "sport",
+ways.tags -> 'tourism' as "tourism",
+ways.tags -> 'water' as "water",
+ways.tags -> 'waterway' as "waterway",
+ways.tags -> 'wetland' as "wetland",
+-------------------------------
   o2p_calculate_zorder(tags) z_order,
   st_area(st_makepolygon(st_transform(o2p_calculate_nodes_to_line(nodes),900913))) way_area,
   st_makepolygon(st_transform(o2p_calculate_nodes_to_line(nodes),900913)) way
@@ -32,7 +53,30 @@ exist(tags, 'water') OR
 exist(tags, 'waterway') OR exist(tags, 'wetland')) 
 UNION
 SELECT
-  osm_id, tags, z_order, st_area(way) way_area, way
+  osm_id, 
+-----------------------------
+tags -> 'aeroway' as "aeroway",
+tags -> 'amenity' as "amenity",
+tags -> 'building' as "building",
+tags -> 'harbour' as "harbour",
+tags -> 'historic' as "historic",
+tags -> 'landuse' as "landuse",
+tags -> 'leisure' as "leisure",
+tags -> 'man_made' as "man_made",
+tags -> 'military' as "military",
+tags -> 'natural' as "natural",
+tags -> 'office' as "office",
+tags -> 'place' as "place",
+tags -> 'power' as "power",
+tags -> 'public_transport' as "public_transport",
+tags -> 'shop' as "shop",
+tags -> 'sport' as "sport",
+tags -> 'tourism' as "tourism",
+tags -> 'water' as "water",
+tags -> 'waterway' as "waterway",
+tags -> 'wetland' as "wetland",
+----------------------------
+  z_order, st_area(way) way_area, way
 FROM (  
 SELECT
   relation_id * -1 as osm_id,
