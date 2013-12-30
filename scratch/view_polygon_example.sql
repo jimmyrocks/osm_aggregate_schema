@@ -1,5 +1,6 @@
--- Poly example view
+-- Poly Example view
 
+CREATE OR REPLACE VIEW planet_osm_polygon AS
 SELECT
   id,
 -------------------------------
