@@ -82,13 +82,13 @@ exist(ways.tags, 'addr:housenumber') OR
 exist(ways.tags, 'addr:interpolation') OR 
 exist(ways.tags, 'admin_level') OR 
 exist(ways.tags, 'aerialway') OR 
-exist(ways.tags, 'aeroway') OR 
-exist(ways.tags, 'amenity') OR 
+(exist(ways.tags, 'aeroway') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR 
+(exist(ways.tags, 'amenity') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR 
 exist(ways.tags, 'barrier') OR 
 exist(ways.tags, 'brand') OR 
 exist(ways.tags, 'bridge') OR 
 exist(ways.tags, 'boundary') OR 
-exist(ways.tags, 'building') OR 
+(exist(ways.tags, 'building') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR 
 exist(ways.tags, 'construction') OR 
 exist(ways.tags, 'covered') OR 
 exist(ways.tags, 'culvert') OR 
@@ -98,43 +98,43 @@ exist(ways.tags, 'disused') OR
 exist(ways.tags, 'embankment') OR 
 exist(ways.tags, 'foot') OR 
 exist(ways.tags, 'generator:source') OR 
-exist(ways.tags, 'harbour') OR 
+(exist(ways.tags, 'harbour') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'highway') OR 
-exist(ways.tags, 'historic') OR 
+(exist(ways.tags, 'historic') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR 
 exist(ways.tags, 'horse') OR 
 exist(ways.tags, 'intermittent') OR 
 exist(ways.tags, 'junction') OR 
-exist(ways.tags, 'landuse') OR 
+(exist(ways.tags, 'landuse') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'layer') OR 
-exist(ways.tags, 'leisure') OR 
+(exist(ways.tags, 'leisure') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'lock') OR 
-exist(ways.tags, 'man_made') OR 
-exist(ways.tags, 'military') OR 
+(exist(ways.tags, 'man_made') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
+(exist(ways.tags, 'military') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'motorcar') OR 
 exist(ways.tags, 'name') OR 
-exist(ways.tags, 'natural') OR 
-exist(ways.tags, 'office') OR 
+(exist(ways.tags, 'natural') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
+(exist(ways.tags, 'office') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR 
 exist(ways.tags, 'oneway') OR 
 exist(ways.tags, 'operator') OR 
-exist(ways.tags, 'place') OR 
+(exist(ways.tags, 'place') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'population') OR 
-exist(ways.tags, 'power') OR 
+(exist(ways.tags, 'power') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'power_source') OR 
-exist(ways.tags, 'public_transport') OR 
+(exist(ways.tags, 'public_transport') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR 
 exist(ways.tags, 'railway') OR 
 exist(ways.tags, 'ref') OR 
 exist(ways.tags, 'route') OR 
 exist(ways.tags, 'service') OR 
-exist(ways.tags, 'shop') OR 
-exist(ways.tags, 'sport') OR 
+(exist(ways.tags, 'shop') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR 
+(exist(ways.tags, 'sport') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'surface') OR 
 exist(ways.tags, 'toll') OR 
-exist(ways.tags, 'tourism') OR 
+(exist(ways.tags, 'tourism') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'tower:type') OR 
 exist(ways.tags, 'tracktype') OR 
 exist(ways.tags, 'tunnel') OR 
-exist(ways.tags, 'water') OR 
-exist(ways.tags, 'waterway') OR 
+(exist(ways.tags, 'water') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
+(exist(ways.tags, 'waterway') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'wetland') OR 
 exist(ways.tags, 'width') OR 
 exist(ways.tags, 'wood'))
@@ -224,13 +224,13 @@ exist(ways.tags, 'addr:housenumber') OR
 exist(ways.tags, 'addr:interpolation') OR 
 exist(ways.tags, 'admin_level') OR 
 exist(ways.tags, 'aerialway') OR 
-exist(ways.tags, 'aeroway') OR 
-exist(ways.tags, 'amenity') OR 
+(exist(ways.tags, 'aeroway') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR 
+(exist(ways.tags, 'amenity') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR 
 exist(ways.tags, 'barrier') OR 
 exist(ways.tags, 'brand') OR 
 exist(ways.tags, 'bridge') OR 
 exist(ways.tags, 'boundary') OR 
-exist(ways.tags, 'building') OR 
+(exist(ways.tags, 'building') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR 
 exist(ways.tags, 'construction') OR 
 exist(ways.tags, 'covered') OR 
 exist(ways.tags, 'culvert') OR 
@@ -240,43 +240,43 @@ exist(ways.tags, 'disused') OR
 exist(ways.tags, 'embankment') OR 
 exist(ways.tags, 'foot') OR 
 exist(ways.tags, 'generator:source') OR 
-exist(ways.tags, 'harbour') OR 
+(exist(ways.tags, 'harbour') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'highway') OR 
-exist(ways.tags, 'historic') OR 
+(exist(ways.tags, 'historic') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR 
 exist(ways.tags, 'horse') OR 
 exist(ways.tags, 'intermittent') OR 
 exist(ways.tags, 'junction') OR 
-exist(ways.tags, 'landuse') OR 
+(exist(ways.tags, 'landuse') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'layer') OR 
-exist(ways.tags, 'leisure') OR 
+(exist(ways.tags, 'leisure') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'lock') OR 
-exist(ways.tags, 'man_made') OR 
-exist(ways.tags, 'military') OR 
+(exist(ways.tags, 'man_made') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
+(exist(ways.tags, 'military') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'motorcar') OR 
 exist(ways.tags, 'name') OR 
-exist(ways.tags, 'natural') OR 
-exist(ways.tags, 'office') OR 
+(exist(ways.tags, 'natural') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
+(exist(ways.tags, 'office') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR 
 exist(ways.tags, 'oneway') OR 
 exist(ways.tags, 'operator') OR 
-exist(ways.tags, 'place') OR 
+(exist(ways.tags, 'place') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'population') OR 
-exist(ways.tags, 'power') OR 
+(exist(ways.tags, 'power') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'power_source') OR 
-exist(ways.tags, 'public_transport') OR 
+(exist(ways.tags, 'public_transport') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR 
 exist(ways.tags, 'railway') OR 
 exist(ways.tags, 'ref') OR 
 exist(ways.tags, 'route') OR 
 exist(ways.tags, 'service') OR 
-exist(ways.tags, 'shop') OR 
-exist(ways.tags, 'sport') OR 
+(exist(ways.tags, 'shop') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR 
+(exist(ways.tags, 'sport') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'surface') OR 
 exist(ways.tags, 'toll') OR 
-exist(ways.tags, 'tourism') OR 
+(exist(ways.tags, 'tourism') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'tower:type') OR 
 exist(ways.tags, 'tracktype') OR 
 exist(ways.tags, 'tunnel') OR 
-exist(ways.tags, 'water') OR 
-exist(ways.tags, 'waterway') OR 
+(exist(ways.tags, 'water') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
+(exist(ways.tags, 'waterway') AND ways.nodes[1] != ways.nodes[array_length(ways.nodes, 1)]) OR  
 exist(ways.tags, 'wetland') OR 
 exist(ways.tags, 'width') OR 
 exist(ways.tags, 'wood'))) rel_line;
