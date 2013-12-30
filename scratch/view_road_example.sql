@@ -1,4 +1,4 @@
--- roads sample view
+-- roads example view
 
 -- useful regex
 -- exist\((.+?), '(.+?)'\).+
