@@ -1,3 +1,6 @@
+-- Point example view
+
+CREATE OR REPLACE VIEW planet_osm_point AS
 SELECT
   id,
 -------------
