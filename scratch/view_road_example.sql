@@ -1,9 +1,10 @@
--- roads example view
+-- roads sample view
 
 -- useful regex
 -- exist\((.+?), '(.+?)'\).+
 -- $1 -> '$2' as "$2",
 
+CREATE OR REPLACE VIEW planet_osm_roads AS
 SELECT 
   osm_id,
 -------------
@@ -26,7 +27,7 @@ SELECT
   way_area,
   way
 FROM
-  line_sample_view
+  planet_osm_line
 WHERE
 "minor" IS NOT NULL OR
 "road" IS NOT NULL OR
