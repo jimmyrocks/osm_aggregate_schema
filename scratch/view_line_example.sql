@@ -1,7 +1,8 @@
 -- Line Example View
 
+CREATE OR REPLACE VIEW planet_osm_line AS
 SELECT
-  id,
+  id as osm_id,
 --------------------
 ways.tags -> 'access' as "access",
 ways.tags -> 'addr:housename' as "addr:housename",
