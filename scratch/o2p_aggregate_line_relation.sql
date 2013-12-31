@@ -10,7 +10,7 @@ BEGIN
 SELECT
   geom as route
 FROM
-  o2p_aggregate_relation(2301099)
+  o2p_aggregate_relation(v_rel_id) -- (2301099) rt 13 for testing
   INTO
     v_way;
 
