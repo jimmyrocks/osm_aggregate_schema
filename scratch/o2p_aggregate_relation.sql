@@ -1,12 +1,17 @@
 --DROP FUNCTION o2p_aggregate_relation(bigint);
 CREATE OR REPLACE FUNCTION o2p_aggregate_relation(
   bigint
-) returns geometry[] AS $o2p_aggregate_relation$
+) returns aggregate_way AS $o2p_aggregate_relation$
 DECLARE
   v_rel_id ALIAS for $1;
-  v_ways geometry[];
+  v_way geometry[];
+  v_role text[];
 BEGIN
 
+SELECT
+  array_agg(route),
+  array_agg(member_role)
+FROM (
   SELECT
     CASE
       WHEN direction = 'R' THEN st_reverse(st_makeline(st_reverse(way_geom)))
@@ -103,9 +108,10 @@ BEGIN
     member_role
   ORDER BY
     min(sequence_id)
+ ) ways_agg
   INTO
-    v_ways;
+    v_way, v_role;
 
- RETURN v_ways;
+ RETURN (v_way, v_role);
 END;
 $o2p_aggregate_relation$ LANGUAGE plpgsql;
