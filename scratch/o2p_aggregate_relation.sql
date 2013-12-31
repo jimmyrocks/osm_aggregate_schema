@@ -23,6 +23,7 @@ FROM (
       CASE
         WHEN new_line = true THEN
     CASE
+      WHEN direction = 'N' THEN new_line_rank || sequence_id::text
       WHEN lead(new_line,1) OVER rw_seq = false THEN lead(new_line_rank,1) OVER rw_seq || direction
       ELSE new_line_rank || direction
     END
@@ -61,6 +62,8 @@ FROM (
             ELSE 'N'
           END as direction,
           CASE
+            WHEN
+              first_node = last_node THEN true
             WHEN
               first_node = lag(last_node,1) OVER wr_seq OR
               last_node = lag(first_node,1) OVER wr_seq OR
