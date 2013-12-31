@@ -24,7 +24,7 @@ FROM (
         geom as line,
         role
       FROM
-        (SELECT unnest(geom) as geom, unnest(role) as role from o2p_aggregate_relation(3351325)) z
+        (SELECT unnest(geom) as geom, unnest(role) as role from o2p_aggregate_relation(v_rel_id)) out_sub
       WHERE
         role != 'inner' AND
         ST_IsClosed(geom)
@@ -33,7 +33,7 @@ FROM (
         geom as line,
         role
       FROM
-        (SELECT unnest(geom) as geom, unnest(role) as role from o2p_aggregate_relation(3351325)) x
+        (SELECT unnest(geom) as geom, unnest(role) as role from o2p_aggregate_relation(v_rel_id)) in_sub
       WHERE
         role = 'inner' AND
         ST_IsClosed(geom)
