@@ -1,21 +1,23 @@
---DROP FUNCTION o2p_aggregate_line_relation(bigint);
-CREATE OR REPLACE FUNCTION o2p_aggregate_line_relation(
+--DROP FUNCTION o2p_aggregate_relation(bigint);
+CREATE OR REPLACE FUNCTION o2p_aggregate_relation(
   bigint
-) returns geometry[] AS $o2p_aggregate_line_relation$
+) returns aggregate_way AS $o2p_aggregate_relation$
 DECLARE
   v_rel_id ALIAS for $1;
-  v_lines geometry[];
+  v_way geometry[];
+  v_role text[];
 BEGIN
--- Looks at the relation id and determines the simplified lines for it
--- Could I do this as a view?
+
 SELECT
-  array_agg(route)
+  array_agg(route),
+  array_agg(member_role)
 FROM (
   SELECT
     CASE
       WHEN direction = 'R' THEN st_reverse(st_makeline(st_reverse(way_geom)))
       ELSE st_makeline(way_geom)
-    END route
+    END route,
+    member_role
   FROM (
     SELECT
       CASE
@@ -40,18 +42,40 @@ FROM (
         sequence_id - rank() OVER (PARTITION BY new_line ORDER BY sequence_id) + 1 as new_line_rank
       FROM (
         SELECT
-          way_geom,
           sequence_id,
           member_role,
           CASE
-            WHEN first_node = lag(last_node,1) OVER wr_seq OR last_node = lead(first_node,1) OVER wr_seq THEN 'F'
-            WHEN last_node = lag(first_node,1) OVER wr_seq OR first_node = lead(last_node,1) OVER wr_seq THEN 'R'
+            WHEN
+              first_node = last_node
+            THEN 'N'
+            WHEN
+              first_node = lag(last_node,1) OVER wr_seq OR
+              last_node = lead(first_node,1) OVER wr_seq OR
+              last_node = lag(last_node) OVER wr_seq
+            THEN 'F'
+            WHEN
+              last_node = lag(first_node,1) OVER wr_seq OR
+              first_node = lead(last_node,1) OVER wr_seq OR
+              first_node = lag(first_node) OVER wr_seq
+            THEN 'R'
             ELSE 'N'
           END as direction,
           CASE
-            WHEN first_node = lag(last_node,1) OVER wr_seq or last_node = lag(first_node,1) OVER wr_seq THEN false
+            WHEN
+              first_node = lag(last_node,1) OVER wr_seq OR
+              last_node = lag(first_node,1) OVER wr_seq OR
+              first_node = lag(first_node) OVER wr_seq OR
+              last_node = lag(last_node) OVER wr_seq
+            THEN false
             ELSE true
-          END as new_line
+          END as new_line,
+          CASE
+            WHEN
+              first_node = lag(first_node) OVER wr_seq OR
+              last_node = lag(last_node) OVER wr_seq
+            THEN st_reverse(way_geom)
+            ELSE way_geom
+          END as way_geom
           FROM (
             SELECT
               ways.nodes[1] first_node,
@@ -84,11 +108,10 @@ FROM (
     member_role
   ORDER BY
     min(sequence_id)
-) compiled_ways;
-INTO
-  v_lines;
+ ) ways_agg
+  INTO
+    v_way, v_role;
 
-
-RETURN v_lines;
+ RETURN (v_way, v_role);
 END;
-$o2p_aggregate_line_relation$ LANGUAGE plpgsql;
+$o2p_aggregate_relation$ LANGUAGE plpgsql;
