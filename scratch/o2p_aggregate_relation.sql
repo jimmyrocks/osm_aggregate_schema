@@ -82,7 +82,7 @@ BEGIN
             relation_members JOIN
                 ways ON ways.id = relation_members.member_id
               WHERE
-                relation_id = 3351325 AND -- relation: 2301099 is rt 13 (for testing)
+                relation_id = v_rel_id AND -- relation: 2301099 is rt 13 (for testing)
                 member_type = 'W'
               ORDER BY
                 sequence_id
