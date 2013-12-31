@@ -11,10 +11,10 @@ SELECT
   array_agg(polygon) polygons
 FROM (
   SELECT
-    st_asgeojson(CASE
+    CASE
       WHEN holes[1] IS NULL THEN st_makepolygon(shell)
       ELSE st_makepolygon(shell, holes)
-    END) polygon
+    END polygon
   FROM (
     SELECT
       outside.line AS shell,
