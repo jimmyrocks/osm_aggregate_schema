@@ -173,7 +173,7 @@ tags -> 'wood' as "wood",
 FROM (  
 SELECT
   relation_id * -1 as osm_id,
-  relations.tags as tags,
+  ways.tags as tags,
   o2p_calculate_zorder(relations.tags) as z_order,
   st_transform(unnest(o2p_aggregate_polygon_relation(relation_id)),900913) as way
 FROM
@@ -181,7 +181,7 @@ FROM
 WHERE
   (relations.tags != ''::hstore AND relations.tags is not null AND ways.nodes[1] = ways.nodes[array_length(ways.nodes, 1)] AND array_length(ways.nodes,1)>1) AND
   exist(relations.tags, 'type') AND
-  (relations.tags -> 'type' = 'multipolygon' OR relations.tags -> 'type' = 'boundary' OR relations.tags -> 'type' = 'route') AND
+  ((relations.tags -> 'type' = 'multipolygon' OR relations.tags -> 'type' = 'boundary' OR relations.tags -> 'type' = 'route') OR
 (exist(relations.tags, 'aeroway') OR 
 exist(relations.tags, 'amenity') OR 
 exist(relations.tags, 'building') OR 
@@ -200,4 +200,4 @@ exist(relations.tags, 'shop') OR
 exist(relations.tags, 'sport') OR 
 exist(relations.tags, 'tourism') OR 
 exist(relations.tags, 'water') OR 
-exist(relations.tags, 'waterway') OR exist(ways.tags, 'wetland'))) rel_poly;
+exist(relations.tags, 'waterway') OR exist(ways.tags, 'wetland')))) rel_poly;
