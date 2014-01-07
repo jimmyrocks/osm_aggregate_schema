@@ -11,10 +11,10 @@ SELECT
   array_agg(polygon) polygons
 FROM (
   SELECT
-    CASE
+    ST_ForceRHR(CASE
       WHEN holes[1] IS NULL THEN st_makepolygon(shell)
       ELSE st_makepolygon(shell, holes)
-    END polygon
+    END) polygon
   FROM (
     SELECT
       outside.line AS shell,
@@ -24,7 +24,7 @@ FROM (
         geom as line,
         role
       FROM
-        (SELECT ST_ForceRHR(unnest(geom)) as geom, unnest(role) as role from o2p_aggregate_relation(v_rel_id)) out_sub
+        (SELECT unnest(geom) as geom, unnest(role) as role from o2p_aggregate_relation(v_rel_id)) out_sub
       WHERE
         role != 'inner' AND
         ST_IsClosed(geom)
@@ -33,7 +33,7 @@ FROM (
         geom as line,
         role
       FROM
-        (SELECT ST_Reverse(ST_ForceRHR(unnest(geom))) as geom, unnest(role) as role from o2p_aggregate_relation(v_rel_id)) in_sub
+        (SELECT unnest(geom) as geom, unnest(role) as role from o2p_aggregate_relation(v_rel_id)) in_sub
       WHERE
         role = 'inner' AND
         ST_IsClosed(geom)
