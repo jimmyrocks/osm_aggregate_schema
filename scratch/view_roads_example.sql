@@ -79,7 +79,17 @@ SELECT
   way
 FROM
   planet_osm_line_view
-WHERE
-highway IS NOT NULL OR
-railway IS NOT NULL OR
-boundary IS NOT NULL;
+WHERE --- https://github.com/openstreetmap/osm2pgsql/blob/master/style.lua
+  railway IS NOT NULL OR
+  boundary = 'administrative' OR
+  highway = 'residential' OR
+  highway = 'tertiary_link' OR
+  highway = 'tertiary' OR
+  highway = 'secondary_link' OR
+  highway = 'secondary' OR
+  highway = 'primary_link' OR
+  highway = 'primary' OR
+  highway = 'trunk_link' OR
+  highway = 'trunk' OR
+  highway = 'motorway_link' OR
+  highway = 'motorway'
