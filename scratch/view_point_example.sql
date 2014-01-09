@@ -2,7 +2,7 @@
 
 CREATE OR REPLACE VIEW planet_osm_point_view AS
 SELECT
-  id,
+  id as "osm_id",
 -------------
 nodes.tags -> 'access' as "access",
 nodes.tags -> 'addr:housename' as "addr:housename",
