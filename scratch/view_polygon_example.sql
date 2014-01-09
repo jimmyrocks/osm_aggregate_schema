@@ -179,25 +179,33 @@ SELECT
 FROM
   ways JOIN relation_members ON ways.id = relation_members.member_id JOIN relations on relation_members.relation_id = relations.id
 WHERE
-  (relations.tags != ''::hstore AND relations.tags is not null AND ways.nodes[1] = ways.nodes[array_length(ways.nodes, 1)] AND array_length(ways.nodes,1)>1) AND
-  exist(relations.tags, 'type') AND
-  ((relations.tags -> 'type' = 'multipolygon' OR relations.tags -> 'type' = 'boundary' OR relations.tags -> 'type' = 'route') OR
-(exist(relations.tags, 'aeroway') OR 
-exist(relations.tags, 'amenity') OR 
-exist(relations.tags, 'building') OR 
-exist(relations.tags, 'harbour') OR 
-exist(relations.tags, 'historic') OR 
-exist(relations.tags, 'landuse') OR 
-exist(relations.tags, 'leisure') OR 
-exist(relations.tags, 'man_made') OR 
-exist(relations.tags, 'military') OR 
-exist(relations.tags, 'natural') OR 
-exist(relations.tags, 'office') OR 
-exist(relations.tags, 'place') OR 
-exist(relations.tags, 'power') OR 
-exist(relations.tags, 'public_transport') OR 
-exist(relations.tags, 'shop') OR 
-exist(relations.tags, 'sport') OR 
-exist(relations.tags, 'tourism') OR 
-exist(relations.tags, 'water') OR 
-exist(relations.tags, 'waterway') OR exist(ways.tags, 'wetland')))) rel_poly;
+  relations.tags != ''::hstore AND
+  relations.tags is not null AND
+  ways.nodes[1] = ways.nodes[array_length(ways.nodes, 1)] AND
+  array_length(ways.nodes,1)>1 AND
+  exist(relations.tags, 'type') AND ((
+    relations.tags -> 'type' = 'multipolygon' OR relations.tags -> 'type' = 'boundary' OR relations.tags -> 'type' = 'route'
+  ) AND (
+    exist(ways.tags, 'aeroway') OR 
+    exist(ways.tags, 'amenity') OR 
+    exist(ways.tags, 'building') OR 
+    exist(ways.tags, 'harbour') OR 
+    exist(ways.tags, 'historic') OR 
+    exist(ways.tags, 'landuse') OR 
+    exist(ways.tags, 'leisure') OR 
+    exist(ways.tags, 'man_made') OR 
+    exist(ways.tags, 'military') OR 
+    exist(ways.tags, 'natural') OR 
+    exist(ways.tags, 'office') OR 
+    exist(ways.tags, 'place') OR 
+    exist(ways.tags, 'power') OR 
+    exist(ways.tags, 'public_transport') OR 
+    exist(ways.tags, 'shop') OR 
+    exist(ways.tags, 'sport') OR 
+    exist(ways.tags, 'tourism') OR 
+    exist(ways.tags, 'water') OR 
+    exist(ways.tags, 'waterway') OR 
+    exist(ways.tags, 'wetland')
+  )
+)
+) rel_poly;
